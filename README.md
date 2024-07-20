@@ -1,2 +1,2 @@
 # Silly-Hub-Free
-Sillu hub but free version
+Silly hub but free version
