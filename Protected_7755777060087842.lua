@@ -196,7 +196,7 @@ while true do
 					if OptionsChoose == false then
 						MapLoadedForGen = true
 					else
-						loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxian612994522/Silly-Hub-Free/refs/heads/main/AutoGen"))
+						loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxian612994522/Silly-Hub-Free/refs/heads/main/AutoGen"))()
 					end
 				end)
 			end
