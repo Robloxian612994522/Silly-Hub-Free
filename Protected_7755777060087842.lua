@@ -45,8 +45,8 @@ local Tabs = {
 }
 
 local lolz = {}
-if getgenv().emergency_stop == nil or not getgenv().emergency_stop then
-getgenv().emergency_stop = false
+if _G.emergency_stop == nil or not _G.emergency_stop then
+	_G.emergency_stop = false
 end
 
 function StudsIntoPower(studs)
@@ -57,8 +57,8 @@ function lolz:ExtendHitbox(studs, time)
 	local distance = StudsIntoPower(studs)
 	local start = tick()
 	local connection = nil
-	if getgenv().emergency_stop == true then
-		getgenv().emergency_stop = false
+	if  _G.emergency_stop == true then
+		_G.emergency_stop = false
 	end
 	repeat game:GetService("RunService").Heartbeat:Wait()
 		local velocity = nil
@@ -71,14 +71,14 @@ function lolz:ExtendHitbox(studs, time)
 		if (game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character.Parent and game:GetService("Players").LocalPlayer.Character.HumanoidRootPart and game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Parent) then
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Velocity = velocity
 		end
-	until tick() - start > tonumber(time) or getgenv().emergency_stop == true
-	if getgenv().emergency_stop == true then
-		getgenv().emergency_stop = false
+	until tick() - start > tonumber(time) or _G.emergency_stop == true
+	if _G.emergency_stop == true then
+		_G.emergency_stop = false
 	end
 end
 
 function lolz:StopExtendingHitbox()
-	getgenv().emergency_stop = true
+	_G.emergency_stop = true
 end
 
 while true do
@@ -106,9 +106,9 @@ LeftGroupBox:AddToggle("Reach (Mid Legit)", {
 	end,
 })
 
-local LeftGroupBox = Tabs.Main:AddLeftGroupbox("Survivor")
+local LeftGroupBox2 = Tabs.Main:AddLeftGroupbox("Survivor")
 
-LeftGroupBox:AddToggle("Auto Generator (Legit)", {
+LeftGroupBox2:AddToggle("Auto Generator (Legit)", {
 	Text = "This automate generator Legitely by randomzing how much delay it needs to activatd",
 	Tooltip = "Enables Auto Generator", -- Information shown when you hover over the toggle
 	DisabledTooltip = "Disables Auto Generator", -- Information shown when you hover over the toggle while it's disabled
@@ -123,7 +123,7 @@ LeftGroupBox:AddToggle("Auto Generator (Legit)", {
 	end,
 })
 
-LeftGroupBox:AddSlider("Auto Gen Delay", {
+LeftGroupBox2:AddSlider("Auto Gen Delay", {
 	Text = "This is only for nodes way",
 	Default = 2,
 	Min = 2,
@@ -143,7 +143,7 @@ LeftGroupBox:AddSlider("Auto Gen Delay", {
 })
 
 
-LeftGroupBox:AddToggle("Auto Generator Customize", {
+LeftGroupBox2:AddToggle("Auto Generator Customize", {
 	Text = "Enables auto generator",
 	Tooltip = "This is Nodes way", -- Information shown when you hover over the toggle
 	DisabledTooltip = "This is Remotes way", -- Information shown when you hover over the toggle while it's disabled
@@ -159,7 +159,7 @@ LeftGroupBox:AddToggle("Auto Generator Customize", {
 })
 
 
-LeftGroupBox:AddToggle("Auto Generator Depends on characters (Ultra Legit)", {
+LeftGroupBox2:AddToggle("Auto Generator Depends on characters (Ultra Legit)", {
 	Text = "This is like auto Generator but less delay depending on the skin and Playtime to make it more legit",
 	Tooltip = "Enables Auto Generator", -- Information shown when you hover over the toggle
 	DisabledTooltip = "Disables Auto Generator", -- Information shown when you hover over the toggle while it's disabled
