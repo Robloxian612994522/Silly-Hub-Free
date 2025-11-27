@@ -49,8 +49,8 @@ if _G.emergency_stop == nil or not _G.emergency_stop then
 	_G.emergency_stop = false
 end
 
-function StudsIntoPower(studs)
-return (studs * 2)
+local function StudsIntoPower(studs)
+	return (studs * 2)
 end
 
 function lolz:ExtendHitbox(studs, time)
@@ -174,13 +174,6 @@ LeftGroupBox2:AddToggle("Auto Generator Depends on characters (Ultra Legit)", {
 	end,
 })
 
-local function bezierPoint(p0, p1, p2, t)
-    local a = (1 - t) ^ 2
-    local b = 2 * (1 - t) * t
-    local c = t ^ 2
-    return (a * p0) + (b * p1) + (c * p2)
-end
-
 while true do
 	if MapLoadedForGen == true and OptionsChoose == false then
 		if AutoGenSafer == true and game:GetService("Players").LocalPlayer.PlayerData.Equipped.Survivor.Value == "Noob" then
@@ -212,3 +205,37 @@ while true do
 		MapLoadedForGen = false
 	end
 end
+
+ThemeManager:SetLibrary(Library)
+SaveManager:SetLibrary(Library)
+
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings()
+
+-- Adds our MenuKeybind to the ignore list
+-- (do you want each config to have a different menu key? probably not.)
+SaveManager:SetIgnoreIndexes({ "MenuKeybind" })
+
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+ThemeManager:SetFolder("LegitHub")
+SaveManager:SetFolder("legitHub/Forsaken")
+SaveManager:SetSubFolder("Forsaken") -- if the game has multiple places inside of it (for example: DOORS)
+-- you can use this to save configs for those places separately
+-- The path in this script would be: MyScriptHub/specific-game/settings/specific-place
+-- [ This is optional ]
+
+-- Builds our config menu on the right side of our tab
+SaveManager:BuildConfigSection(Tabs["UI Settings"])
+
+-- Builds our theme menu (with plenty of built in themes) on the left side
+-- NOTE: you can also call ThemeManager:ApplyToGroupbox to add it to a specific groupbox
+ThemeManager:ApplyToTab(Tabs["UI Settings"])
+
+-- You can use the SaveManager:LoadAutoloadConfig() to load a config
+-- which has been marked to be one that auto loads!
+SaveManager:LoadAutoloadConfig()
+
+return lolz
