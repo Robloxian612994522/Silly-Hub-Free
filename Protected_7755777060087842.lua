@@ -142,6 +142,12 @@ LeftGroupBox2:AddSlider("Auto Gen Delay", {
 	Visible = true, -- Will make the slider invisible (true / false)
 })
 
+local MenuGroup = Tabs.Main:AddRightGroupbox("Unload")
+MenuGroup:AddButton("Unload", function()
+	Library:Unload()
+end)
+
+
 
 LeftGroupBox2:AddToggle("Auto Generator Customize", {
 	Text = "Enables auto generator",
@@ -205,37 +211,3 @@ while true do
 		MapLoadedForGen = false
 	end
 end
-
-ThemeManager:SetLibrary(Library)
-SaveManager:SetLibrary(Library)
-
--- Ignore keys that are used by ThemeManager.
--- (we dont want configs to save themes, do we?)
-SaveManager:IgnoreThemeSettings()
-
--- Adds our MenuKeybind to the ignore list
--- (do you want each config to have a different menu key? probably not.)
-SaveManager:SetIgnoreIndexes({ "MenuKeybind" })
-
--- use case for doing it this way:
--- a script hub could have themes in a global folder
--- and game configs in a separate folder per game
-ThemeManager:SetFolder("LegitHub")
-SaveManager:SetFolder("legitHub/Forsaken")
-SaveManager:SetSubFolder("Forsaken") -- if the game has multiple places inside of it (for example: DOORS)
--- you can use this to save configs for those places separately
--- The path in this script would be: MyScriptHub/specific-game/settings/specific-place
--- [ This is optional ]
-
--- Builds our config menu on the right side of our tab
-SaveManager:BuildConfigSection(Tabs["UI Settings"])
-
--- Builds our theme menu (with plenty of built in themes) on the left side
--- NOTE: you can also call ThemeManager:ApplyToGroupbox to add it to a specific groupbox
-ThemeManager:ApplyToTab(Tabs["UI Settings"])
-
--- You can use the SaveManager:LoadAutoloadConfig() to load a config
--- which has been marked to be one that auto loads!
-SaveManager:LoadAutoloadConfig()
-
-return lolz
