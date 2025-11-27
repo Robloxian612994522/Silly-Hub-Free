@@ -140,9 +140,9 @@ LeftGroupBox2:AddSlider("Auto Gen Delay", {
 
 	Disabled = false, -- Will disable the slider (true / false)
 	Visible = true, -- Will make the slider invisible (true / false)
-})
+}) 
 
-local MenuGroup = Tabs.Main:AddRightGroupbox("Unload")
+local MenuGroup = Tabs.Main:AddLeftGroupbox("Unload")
 MenuGroup:AddButton("Unload", function()
 	Library:Unload()
 end)
